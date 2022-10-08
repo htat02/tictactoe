@@ -14,17 +14,17 @@ void createBoard(char board[]){
 
 void insertMarker(char board[], char *player){
     int cords;
-    int valid = 0;
     do{
     printf("Player %c turn\nEnter cords(1-9): ", *player);
     scanf_s("%d",&cords);
     if (cords <1 || cords >9){
-    printf("INVALID INPUT. RETRY!\n");
+        printf("INVALID INPUT. RETRY!\n");}
     }
-    }while(cords <1 || cords >9);
+    while(cords <1 || cords >9);
 
     board[cords-1] = *player;
     }
+
 
 /*prompt user for game they wish to play (PVP or PVE) 
 void chooseGame(int gameOption){
