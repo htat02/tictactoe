@@ -117,7 +117,7 @@ bool drawCheck(int maxTurns){
 void cpu(char board[], char *player){
     srand(time(0));
     int r = (rand()%9)+1;
-    board[r-1] = &player;
+    board[r-1] = player;
 }
 
 void pvp(char board[], char *player, int maxTurn, int replay, bool game){
@@ -177,7 +177,6 @@ while(game){
             createBoard(board);
             insertMarker(board, &player);
             maxTurn++;
-            cpu(board, player);
             if(winCheck(board)){
                 createBoard(board);
                 printf("Player %c wins!\n", player);
@@ -222,5 +221,8 @@ while(game){
                 }while(replay <1 || replay >2);
             }
             nextTurn(&player);
+            cpu(board, player);
+            nextTurn(&player);
+            maxTurn++;
         }
 }
