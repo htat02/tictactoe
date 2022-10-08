@@ -6,7 +6,7 @@
 int main(){
 
     int gameOption;
-    int player = 1;
+    char player = 'X';
     char board[] = { '-','-','-','-','-','-','-','-','-' };
     bool game = true;
     int maxTurn = 0;
@@ -18,7 +18,7 @@ int main(){
         maxTurn++;
         if(winCheck(board)){
             createBoard(board);
-            printf("Player %d wins!", player);
+            printf("Player %c wins!", player);
             exit(0);
         }
         if(drawCheck(maxTurn)){
