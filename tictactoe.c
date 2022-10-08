@@ -1,19 +1,35 @@
 /* Tic Tac Toe game with person vs person or person vs cpu */
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
 
 int main(){
 
 int gameOption;
-char turn = 'X';
+int player = 1;
 char board[] = { '-','-','-','-','-','-','-','-','-' };
+bool game = true;
+int maxTurn = 0;
 
 printf("WELCOME TO TIC TAC TOE\n");
-createBoard(board);
+while(game){
+    createBoard(board);
+    insertMarker(board,&player);
+    maxTurn++;
+    if(winCheck(board)){
+        createBoard(board);
+        printf("Player %d wins!", player);
+        exit(0);
+    }
+    if(drawCheck(maxTurn)){
+        createBoard(board);
+        printf("The game is a draw!");
+        exit(0);
+    }
+    nextTurn(&player);
+}
 }
 
-/*Create Board */ 
+/* Create Board */ 
 void createBoard(char board[]){
     int i;
    for (i = 0; i < 9; i++) {
@@ -24,11 +40,11 @@ void createBoard(char board[]){
    }
 }
 
-void insertMarker(char board[], char *turn){
+void insertMarker(char board[], char *player){
     int cords;
-    printf("Player %c turn\nEnter cords: ", *turn);
+    printf("Player %d turn\nEnter cords: ", *player);
     scanf("%d",&cords);
-    board[cords-1] = *turn;
+    board[cords-1] = *player;
 }
 
 /*prompt user for game they wish to play (PVP or PVE) 
@@ -39,11 +55,11 @@ void chooseGame(int gameOption){
     }
     */
 
-void nextTurn(char *turn){
-    if(*turn == 'X'){
-        *turn = 'O';
+void nextTurn(char *player){
+    if(*player == 1){
+        *player = 2;
     }
-    else {*turn = 'X';
+    else {*player = 1;
     }
 }
 
@@ -120,9 +136,3 @@ bool drawCheck(int maxTurns){
     }
     return true;
 }
-
-/*Present option for player 1 */
-
-/*Present option for player 2 if available */ 
-
-/*CPU action */
