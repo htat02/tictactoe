@@ -13,53 +13,17 @@ int main(void){
     int maxTurn = 0;
 
     printf("WELCOME TO TIC TAC TOE\n");
-    while(game){
-        createBoard(board);
-        insertMarker(board, &player);
-        maxTurn++;
-        if(winCheck(board)){
-            createBoard(board);
-            printf("Player %c wins!\n", player);
-            do{
-            printf("Do you want to replay?\n1 -- YES\n2 -- NO\n");
-            scanf("%d", &replay);
-            if(replay <1 || replay >2){
-                printf("INVALID INPUT. RETRY!\n");
-            }
-            if(replay == 2){
-                exit(0);
-            }
-            else{
-                for(int i=0;i<9;i++)
-                {
-                    board[i] = '-';
-                }
-                maxTurn=0;
-            }
-        }while(replay <1 || replay >2);
-        }
+    
+    /*prompt user for game they wish to play (PVP or PVE) */
+    printf("Select an Option:\n");
+    printf("1 -- person vs. person\n2 -- person vs. random computer\n");
+    scanf("%d",&gameOption);
+    if(gameOption == 1){
+        pvp(board, player, maxTurn, replay, game);
+    }
+    else if(gameOption ==2){
+        pve(board, player, maxTurn, replay, game);
+        
 
-        if(drawCheck(maxTurn)){
-            createBoard(board);
-            do{
-            printf("The game is a draw!\n");
-            printf("Do you want to replay?\n1 -- YES\n2 -- NO\n");
-            scanf("%d", &replay);
-            if(replay <1 || replay >2){
-                printf("INVALID INPUT. RETRY!\n");
-            }
-            if(replay == 2){
-                exit(0);
-            }
-            else if(replay == 1){
-                for(int i=0;i<9;i++)
-                {
-                    board[i] = '-';
-                }
-                maxTurn=0;
-            }
-            }while(replay <1 || replay >2);
-        }
-        nextTurn(&player);
     }
 }
