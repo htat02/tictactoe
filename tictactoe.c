@@ -7,6 +7,7 @@
 int main(void){
     int replay;
     int gameOption;
+    int cords;
     char player = 'X';
     char board[] = { '-','-','-','-','-','-','-','-','-' };
     bool game = true;
@@ -23,7 +24,5 @@ int main(void){
     }
     else if(gameOption ==2){
         pve(board, player, maxTurn, replay, game);
-        
-
     }
 }

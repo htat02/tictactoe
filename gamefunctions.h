@@ -15,20 +15,22 @@ void createBoard(char board[]){
 }
 
 void insertMarker(char board[], char *player){
+    char pos;
     int cords;
-    do{
-    printf("Player %c turn\nEnter cords(1-9): ", *player);
-    scanf_s("%d",&cords);
-    if (cords <1 || cords >9){
-        printf("INVALID INPUT. RETRY!\n");}
+        do{
+            printf("Player %c turn\nEnter cords(1-9): ", *player);
+            scanf_s("%d",&cords);
+            if (cords <1 || cords >9){
+                    printf("INVALID INPUT. RETRY!\n");
+                }
 
-    /*if(board[*player] == 'X' || board[*player] == 'O'){
-        printf("INVALID INPUT. RETRY!\n");*/
-
-    }while(cords <1 || cords >9);
+            if(board[cords] == 'X' || board[cords] == 'O'){
+                    printf("INVALID INPUT. RETRY!\n");
+                }
+        }while(cords <1 || cords >9 || board[cords] == 'X' || board[cords] == 'O');
     
     board[cords-1] = *player;
-    }
+}
 
 void nextTurn(char *player){
     if(*player == 'X'){
@@ -118,7 +120,9 @@ void cpu(char board[], char *player){
     srand(time(0));
     int r = (rand()%9)+1;
     board[r-1] = player;
-}
+    }
+
+
 
 void pvp(char board[], char *player, int maxTurn, int replay, bool game){
 while(game){
