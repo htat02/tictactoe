@@ -114,6 +114,13 @@ bool winCheck(char board[]){
     }
 }
 
+bool drawCheck(int maxTurns){
+    if(maxTurns<9){
+        return false;
+    }
+    return true;
+}
+
 /*Present option for player 1 */
 
 /*Present option for player 2 if available */ 
